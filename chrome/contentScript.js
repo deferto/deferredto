@@ -7,10 +7,30 @@ chrome.runtime.sendMessage({action: "init"})
 var imgs;
 var imgsLength;
 
+function log(message) {
+  chrome.runtime.sendMessage({action: "log", "message": message});
+}
+
+function imgOnload(e) {
+  log("imgOnload" + e + " " + this);
+}
+
+function imgOnerror(e) {
+  log("imgOnload" + e + " " + this);
+}
+
 function initImages() {
   imgs = document.getElementsByTagName("img");
   imgsLength = imgs.length;
-  console.log("imgsLength: " + imgsLength);
+  for (var i = imgs.length - 1; i >= 0; i--) {
+    var img = imgs[i];
+    img.setAttribute("data-src", img.src);
+    img.setAttribute("data-parent", img.parentNode);
+    img.setAttribute("onload", imgOnload);
+    img.setAttribute("onerror", imgOnerror);
+    img.src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+  };
+  log("imgsLength: " + imgsLength);
 }
 
 function inViewport(img) {
@@ -31,11 +51,8 @@ function updateImages() {
   for (var i = imgsLength - 1; i >= 0; i--) {
     var img = imgs[i];
     if (inViewport(img)) {
-      var src = img.src;
-      img.src = "";
-      chrome.runtime.sendMessage({action: "unblock"}, function() {
-        img.src = src;
-      });
+      log("reloading " + img.getAttribute("data-src"));
+      img.src = img.getAttribute("data-src");
       removeDeferredImg(i);
     }
   };
@@ -66,6 +83,8 @@ function preloadForm (form) {
 }
 
 function installPreloaders() {
+  console.error("skipping installPreloaders");
+  return;
   var links = document.getElementsByTagName("a");
   for (var i = links.length - 1; i >= 0; i--) {
     links[i].addEventListener("mouseover", preloadLink);
@@ -78,8 +97,12 @@ function installPreloaders() {
 
 function onDOMContentLoaded() {
   initImages();
-  updateImages();
-  installDeferredLoading();
+  log("onDOMContentLoaded");
+  chrome.runtime.sendMessage({action: "unblock"}, function () {
+    log("after content script unblock");
+    updateImages();
+    installDeferredLoading();
+  });
   installPreloaders();
 }
 
@@ -88,4 +111,6 @@ window.addEventListener("DOMContentLoaded", onDOMContentLoaded);
 window.onload = function () {
   chrome.runtime.sendMessage({action: "unblock"});
 };
+
+log("Content script loaded.")
 

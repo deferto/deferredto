@@ -5,11 +5,12 @@
  */
 var blocked = [];
 var unblocked = [];
-var blockedTabs = [];
+var blockedTabs = {};
 
-function preload(url) {
-  console.log("preload: " + url + " (fake)");
+function preload(request) {
+  var url = request.preload;
   return;
+  console.log("preload: " + url);
 
   var xhr = new XMLHttpRequest();
   xhr.open("GET", "http://www.deferredto.com/?url" + encodeURIComponent(url), true);
@@ -23,36 +24,45 @@ function preload(url) {
   xhr.send();
 }
 
-// function unblock(url) {
-//     console.log("in unblock: " + url + ", " + unblocked.length);
-//     unblocked.push(url);
+function tabInit(request, sender) {
+  var tabBlocker = blockedTabs[sender.tab.id];
+  if (tabBlocker) {
+    var tabBlocker = function(details) {
+      console.log("block " + details.tabId + " " + details.url);
+      return {cancel: true};
+    };
+    chrome.webRequest.onBeforeRequest.addListener(
+      tabBlocker,
+      {urls: ["http://*/*"], types: ["image"]},
+      ["blocking"]);
+    blockedTabs[sender.tab.id] = tabBlocker;
 
-//     var urlIndex = blocked.indexOf(url);
-//     if (urlIndex >= 0) {
-//       blocked.splice(urlIndex, 1);
-//     }
-// }
-
-function tabInit(tab) {
-  var tabIndex = blockedTabs.indexOf(tab.id);
-  if (tabIndex == -1) {
-    blockedTabs.push(tab.id);
     console.log("tabInit: " + JSON.stringify(blockedTabs));
   }
 }
 
-function tabUnblock(tab) {
-  var tabIndex = blockedTabs.indexOf(tab.id);
-  if (tabIndex != -1) {
-    blockedTabs.splice(tabIndex, 1);
+function tabUnblock(request, sender) {
+  var tabBlocker = blockedTabs[sender.tab.id];
+  if (tabBlocker) {
+    delete blockedTabs[sender.tab.id];
+    chrome.webRequest.onBeforeRequest.removeListener(tabBlocker);
     console.log("tabUnblock: " + JSON.stringify(blockedTabs));
   }
 }
 
+function logMain(request, sender) {
+  console.log(sender.tab.id, request.message);
+}
+
+var actions = {
+  "preload": preload,
+  "unblock": tabUnblock,
+  "init": tabInit
+};
+
 function dispather(request, sender, sendResponse) {
-  console.log("in dispather");
   if (!request.action) {
-    console.log("!request.action");
+    console.log("dispather !request.action");
     return;  
   }
 
@@ -61,36 +71,25 @@ function dispather(request, sender, sendResponse) {
     return;  
   }
 
-  if("preload" == request.action) {
-    preload(request.url);
-  } else if("unblock" == request.action) {
-    tabUnblock(sender.tab);
-  } else if ("init" == request.action) {
-    tabInit(sender.tab);
-  }
-}
-
-
-function requestBlocker(details) {
-    if (
-      details.method != "GET" || 
-      details.tabId == -1 || 
-      details.type != "image") {
-        // console.log("skip in requestBlocker "+ JSON.stringify(details));
-
-        return {cancel: false};
+  var response;
+  if ("log" == request.action) {
+    logMain(request, sender);
+  } else {
+    console.log("dispather " + request.action);
+    var action = actions[request.action];
+    if (action) {
+      response = action(request, sender);
+    } else {
+      var message = "Unknown dispather action: " + request.action;
+      console.error(message);
+      throw message;
     }
-    var result = {cancel: blockedTabs.indexOf(details.tabId) != -1};
-    console.log("block in requestBlocker " + JSON.stringify(result));
-    return result;
+  }
+
+  sendResponse(response);
 }
 
 chrome.runtime.onMessage.addListener(dispather);
-
-chrome.webRequest.onBeforeRequest.addListener(
-  requestBlocker,
-  {urls: ["<all_urls>"]},
-  ["blocking"]);
 
 console.log("DeferredTo background.js initialized.")
 
