@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+
+  "name": "Deferredto",
+  "description": "Deferredto makes page loading faster by deferring image, media, plug-in and frame loading to the moment they are just about to appear on the screen.",
+  "version": "0.1",
+
+ "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["contentScript.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+
+  "background": {
+    "page": "background.html"
+  },
+
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "webRequest",
+    "tabs",
+    "webRequestBlocking",
+    "http://*/*", "https://*/*"
+  ]
+}
+/**
+ TODO: fix tabUnblock does not happen
+ */
