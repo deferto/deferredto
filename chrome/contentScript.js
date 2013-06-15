@@ -12,22 +12,21 @@ function log(message) {
 }
 
 function imgOnload(e) {
-  log("imgOnload" + e + " " + this);
+  log("imgOnload " + this.src);
 }
 
 function imgOnerror(e) {
-  log("imgOnload" + e + " " + this);
+  log("imgOnload "+ this.src);
 }
 
 function initImages() {
-  imgs = document.getElementsByTagName("img");
+  imgs = Array.prototype.slice.call(document.getElementsByTagName("img"));
   imgsLength = imgs.length;
   for (var i = imgs.length - 1; i >= 0; i--) {
     var img = imgs[i];
     img.setAttribute("data-src", img.src);
-    img.setAttribute("data-parent", img.parentNode);
-    img.setAttribute("onload", imgOnload);
-    img.setAttribute("onerror", imgOnerror);
+    img.onload = imgOnload;
+    img.onerror = imgOnerror;
     img.src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
   };
   log("imgsLength: " + imgsLength);
