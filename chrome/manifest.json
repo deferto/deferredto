@@ -7,7 +7,7 @@
 
  "content_scripts": [
     {
-      "matches": ["http://*/*"],
+      "matches": ["http://*/*", "file://*/*"],
       "js": ["contentScript.js"],
       "run_at": "document_start",
       "all_frames": false

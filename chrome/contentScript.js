@@ -12,6 +12,7 @@ function log(message) {
 }
 
 function imgOnload(e) {
+  updateImages();
   log("imgOnload " + this.src);
 }
 
@@ -34,7 +35,7 @@ function initImages() {
 
 function inViewport(img) {
   var rect = img.getBoundingClientRect();
-  return !(rect.top > window.scrollY + window.innerHeight || rect.top + rect.height < window.scrollY);
+  return !(img.offsetTop > window.scrollY + window.innerHeight || img.offsetTop + rect.height < window.scrollY);
 }
 
 function removeDeferredImg(index) {
@@ -53,6 +54,7 @@ function updateImages() {
       log("reloading " + img.getAttribute("data-src"));
       img.src = img.getAttribute("data-src");
       removeDeferredImg(i);
+      return;
     }
   };
 }
@@ -82,7 +84,7 @@ function preloadForm (form) {
 }
 
 function installPreloaders() {
-  console.error("skipping installPreloaders");
+  console.debug("skipping installPreloaders");
   return;
   var links = document.getElementsByTagName("a");
   for (var i = links.length - 1; i >= 0; i--) {
@@ -106,10 +108,6 @@ function onDOMContentLoaded() {
 }
 
 window.addEventListener("DOMContentLoaded", onDOMContentLoaded);
-
-window.onload = function () {
-  chrome.runtime.sendMessage({action: "unblock"});
-};
 
 log("Content script loaded.")
 
