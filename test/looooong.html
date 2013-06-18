@@ -1,0 +1,49 @@
+<html>
+
+<style>
+body, html {
+ margin: 0;
+ padding: 0;
+}
+.rarr {
+ position: relative;
+ top: 1.5px;
+}
+.line {
+ width: 100%;
+ display: block;
+ z-index: -1;
+ border-top: 2px solid red;
+ position: relative;
+ top: 9px;
+
+}
+.deferred{
+ float: left;
+}
+.to {
+ float: right;
+}
+.deferred, .to {
+ background-color: white;
+ display: inline-block;
+}
+.deferredto {
+ margin: 1em;
+}
+.clear {
+ clear: both;
+}
+
+</style>
+
+<body>
+
+<div class='deferredto'>
+ <span class="deferred">Deferred&nbsp;</span>
+ <span class="to">&nbsp;to</span>
+ <span class="line"></span>
+ <div class="clear"></div> 
+</div>
+
+
