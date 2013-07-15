@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Javac" />
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="CopyrightManager" default="">
+    <module2copyright />
+  </component>
+  <component name="DependencyValidationManager">
+    <option name="SKIP_IMPORT_STATEMENTS" value="false" />
+  </component>
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jetty-proxy/jetty-proxy.iml" filepath="$PROJECT_DIR$/jetty-proxy/jetty-proxy.iml" />
+    </modules>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="" />
+    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+  </component>
+  <component name="libraryTable">
+    <library name="javadoc">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/../../libs/httpcomponents-client-4.2.5/lib/commons-codec-1.6.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/httpcomponents-client-4.2.5/lib/commons-logging-1.1.1.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/httpcomponents-client-4.2.5/lib/fluent-hc-4.2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/httpcomponents-client-4.2.5/lib/httpclient-4.2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/httpcomponents-client-4.2.5/lib/httpclient-cache-4.2.5.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/httpcomponents-client-4.2.5/lib/httpcore-4.2.4.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/httpcomponents-client-4.2.5/lib/httpmime-4.2.5.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="file://$PROJECT_DIR$/../../libs/httpcomponents-client-4.2.5/javadoc" />
+      </JAVADOC>
+      <SOURCES />
+    </library>
+    <library name="jetty-distribution-9.0.3">
+      <CLASSES>
+        <root url="file://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-annotations-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-client-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-continuation-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-deploy-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-http-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-io-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-jaas-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-jmx-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-jndi-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-plus-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-proxy-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-rewrite-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-security-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-server-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-servlet-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-servlets-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-util-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-webapp-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/jetty-xml-9.0.3.v20130506.jar!/" />
+        <root url="jar://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506/lib/servlet-api-3.0.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="http://download.eclipse.org/jetty/stable-9/apidocs/" />
+      </JAVADOC>
+      <SOURCES />
+      <jarDirectory url="file://$PROJECT_DIR$/../../libs/jetty-distribution-9.0.3.v20130506" recursive="false" />
+    </library>
+  </component>
+</project>
+

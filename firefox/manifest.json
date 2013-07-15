@@ -2,11 +2,9 @@
   "manifest_version": 2,
 
   "name": "Deferredto",
-  "description": "Deferredto makes page loading faster by deferring image and media loading till they are just about to appear on the screen",
+  "description": "Deferredto makes page loading faster by deferring image, media, plug-in and frame loading to the moment they are just about to appear on the screen.",
   "version": "0.1",
-  "icons": { "16":  "icon-16.png",
-             "48":  "icon-48.png",
-             "128": "icon-128.png" },
+
  "content_scripts": [
     {
       "matches": ["http://*/*", "file://*/*"],
