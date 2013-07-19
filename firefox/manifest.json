@@ -5,6 +5,9 @@
   "description": "Deferredto makes page loading faster by deferring image, media, plug-in and frame loading to the moment they are just about to appear on the screen.",
   "version": "0.1",
 
+  icon: "icon-48.png",
+  icon64: "icon-64.png",
+
  "content_scripts": [
     {
       "matches": ["http://*/*", "file://*/*"],

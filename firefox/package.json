@@ -1,0 +1,19 @@
+{"license": "",
+ "description": "DeferredTo makes page loading faster by deferring images loading to the moment they are just about to appear on the screen.",
+ "contributors": [],
+ "author": "DeferredTo",
+ icon: "icon-48.png",
+ icon64: "icon-64.png",
+
+
+ "url": "http://www.DeferredTo.com/",
+ "dependencies": ["api-utils",
+ "addon-kit"],
+ "version": "beta.rev253",
+ "lib": "lib",
+ "fullName": "DeferredTo",
+ "main": "main",
+ "id": "jid0-7jRA83vLgp1WJxyHcbp43vxnnzs",
+ "name": "DeferredTo",
+ version: "0.2"}
+
